@@ -1,0 +1,76 @@
+---
+title: "midterm_package"
+author: "Tiffanie Luong"
+date: "4/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Similar Packages
+
+There are several packages in R that allow the creation of flow charts, however their purpose is more for the visualization of an idea while the *flow* package is meant for visualization of how a function works for debugging by using a flow chart. Several functions built in R are tools that can be used for debugging code, but with no visual aspect. For example, `browser()` will open an environment that will allow the user to go through the code one line at a time while `debug()` is a function that will open the browser to track the problem within a specific function. Applying the information taken from these debugging functions into creating a flow chart may create a better understanding of the function 
+
+(Peng, et al., 2020)
+
+### Other Packages for Creating Flow Charts {.tabset}
+
+Both *diagram*, *diagrammeR*, and *Gmisc* are popular packages for producing simple flow charts in R.
+
+#### diagram 
+
+The *diagram* package has three main ways it can be used. First, the function `plotmat()` takes a matrix input consisting of transition coefficients or interaction strengths then plots a network of boxes connected with arrows that are labeled with the value of the coefficients. The function `plotweb()` also takes an input of a matrix and plots a web with arrows having a thickness corresponding with the value of the coefficient. Finally, simple flow charts can be made by creating separate objects and connecting them with arrows.
+
+(Soetaert, 2009)
+
+----
+
+#### diagrammeR
+
+The *diagrammeR* package is used exlcusively for modifying, anaylzying, and visualizing network graphs. Outputs can be created for R Markdown documents, Shiny web apps, and as image files. As it was created by using the *htmlwidgets* package, this package creates an easy framework from working from JavaScript to R. 
+
+(Iannone, 2020)
+
+----
+
+#### Gmisc
+
+The *Gmisc* package uses the built-in R package *grid* in order to create and personalize basic flow charts in order to visualize a process or working through an idea. Not only can regular expressions be formatted into the boxes, mathematical equations with special characters can also be written into boxes using the `bquote()` function.
+
+(Gordon, 2020)
+
+----
+
+### Similarities and Differences
+
+The table below displays the similarities and differences between *flow* and similiar packages and their capabilties of creating flow charts.
+
+```{r, echo = FALSE}
+mytable = data.frame(
+    Package      = c("diagram", "diagrammeR", "Gmisc"),
+    Similarities = c("* Inputs can be functions\ \n* Option for creating a longer chart", 
+                     "* Works exclusively with flow charts\ \n* Analysis can be run from the output", 
+                     "* Can change spacing between and alignment of boxes"),
+    Differences  = c("* Can create different thickness of connecting arrows\ \n* If run with an error, function will create no output\ \n* Uses language from grid, which is more well-known",
+                     "* Uses DOT language\ \n* Creates graphs from nodes and edges",
+                     "* Uses R built-in package grid, which is has a language that is more well-known\ \n* Can code in special characters and symbols"))
+
+pander::pander(mytable, keep.line.breaks = TRUE, style = 'grid', justify = 'left')
+
+
+```
+
+----
+
+## References
+
+Gordon, Max, *Building a flowchart* from <https://cran.r-project.org/web/packages/Gmisc/vignettes/Grid-based_flowcharts.html#grid-some-background-info>
+
+Iannone Richard, *DiagrammeR* from <https://github.com/rich-iannone/DiagrammeR>
+
+Peng Roger D. , Kross Sean, and Anderson Brooke, *Mastering Software Development in R*, from <https://bookdown.org/rdpeng/RProgDA/>
+
+Soetaert Karline, *R Package diagram: visualising simple graphs, flowcharts, and webs* from <https://cran.r-project.org/web/packages/diagram/vignettes/diagram.pdf>
+
