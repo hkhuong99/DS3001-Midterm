@@ -1,0 +1,45 @@
+---
+title: "Flow Project"
+author: "Allison Feeney"
+date: "4/5/2021"
+output: html_document:
+    toc: TRUE
+    theme: journal
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(remotes)
+        
+remotes::install_github("moodymudskipper/flow")
+```
+## Overview
+
+The R package, flow, was created to help visualize what is going on in a script, function or expression. It creates a flow diagram, displaying each step of your function. This can help with debugging a complicated script or just understanding the logic of an algorithm. This package was created by Antoine Fabri (moodymudskipper on Github) and can be installed through github. He has also created other packages and is highly active on stackoverflow. Flow is still in its first version (0.0.1). 
+
+### Package Imports
+
+Flow is built on the nomnoml package and plantuml package. Nomnoml and plantuml are both UML diagram drawing packages.
+
+Other imported packages 
+
+utf8       
+cli         
+vctrs       
+pillar      
+lifecycle   
+tibble     
+R.utils     
+R.oo        
+R.methodsS3 
+ps          
+processx    
+callr      
+xfun        
+R.cache     
+webshot     
+styler      
+
+
