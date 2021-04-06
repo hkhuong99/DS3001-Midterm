@@ -22,11 +22,11 @@ library(flow)
 
 ## Overview
 
-The R package, flow, was created to help visualize what is going on in a script, function or expression. It creates a flow diagram, displaying each step of your function. This can help with debugging a complicated script or just understanding the logic of an algorithm. This package was created by Antoine Fabri (moodymudskipper on Github) and can be installed through github. He has also created other packages and is highly active on stackoverflow. Flow is still in its first version (0.0.1). 
+The R package, *flow*, was created to help visualize what is going on in a script, function or expression. It creates a flow diagram, displaying each step of your function. This can help with debugging a complicated script or just understanding the logic of an algorithm. This package was created by Antoine Fabri (moodymudskipper on Github) and can be installed through github. He has also created other packages and is highly active on stackoverflow. *Flow* is still in its first version (0.0.1). 
 
 ### Package Imports
 
-Flow is built on the nomnoml package and plantuml package. Nomnoml and plantuml are both UML diagram drawing packages.
+*Flow* is built on the nomnoml package and plantuml package. Nomnoml and plantuml are both UML diagram drawing packages.
 
 Other imported packages: 
 
@@ -47,8 +47,10 @@ R.cache
 webshot     
 styler      
 
+---- 
+
 ## Usage
-The main purpose of this package is to be used during debugging so we can better understand the logic behind built-in functions and the arguments it takes/how these arguments are used. Flow can also be used for functions that we create ourselves in order to ensure our functions are working the way that we want them to. For example, in our presentation, we wrote the function *test_function* which can be used as an argument within any of the flow methods. By doing so, we'd be able to see what our function does, and make any changes if we notice that our function isn't doing what we thought it would do. 
+The main purpose of this package is to be used during debugging so we can better understand the logic behind built-in functions and the arguments it takes/how these arguments are used. *Flow* can also be used for functions that we create ourselves in order to ensure our functions are working the way that we want them to. For example, in our presentation, we wrote the function *test_function* which can be used as an argument within any of the flow methods. By doing so, we'd be able to see what our function does, and make any changes if we notice that our function isn't doing what we thought it would do. 
 
 ## Methods and Examples 
 
@@ -68,20 +70,20 @@ test_function <- function(n){
 ```
 
 ### flow_view
-The *flow_view* method can be used on a function, a quoted expression, or the path of an R script in order to visualize it. In this case, we ran flow_view on our function *test_function* to see the logic behind it. 
+The `flow_view()` method can be used on a function, a quoted expression, or the path of an R script in order to visualize it. In this case, we ran `flow_view()` on our function *test_function* to see the logic behind it. 
 ```{r}
 flow_view(test_function)
 ```
 
 ### flow_run
-The *flow_run* function allows you to visualize what path is being taken when a certain function is being **called**. This is different from flow_view in that it also gives you the output of the function. In this case, we tried running our function *test_function* on the number 5 with which the function accurately returns the number 2. This is because the only even numbers between 1 and 5 are 2 and 4. 
+The `flow_run()` function allows you to visualize what path is being taken when a certain function is being **called**. This is different from `flow_view()` in that it also gives you the output of the function. In this case, we tried running our function *test_function* on the number 5 with which the function accurately returns the number 2. This is because the only even numbers between 1 and 5 are 2 and 4. 
 
 ```{r, include = TRUE}
 flow_run(test_function(5))
 ```
 ![](flow_run_test_function.png)
 
-A better function we can use in order to show the functionality of this method would be this *is_even* function that we wrote because all it does is check whether or not an input is even. 
+A better function we can use in order to show the functionality of this method would be this `is_even` function that we wrote because all it does is check whether or not an input is even. 
 ```{r, include = TRUE}
 is_even <- function(n){
     if( n %% 2 == 0){ #checks if the number is even
@@ -99,10 +101,12 @@ flow_run(is_even(5))
 From this flow diagram, we can see that with the input 5, the function goes down the return(FALSE) branch since 5 %% 2 does *not* equal 0. Consequently, it doesn't go down the return(TRUE), making this path dotted, as opposed to the solid arrow shown from if(n%%2 ==0) to return(FALSE).
 
 ### flow_data
-The *flow_data* function shows the edge and node data that's generated by *flow_view*. In other words, it shows the types of methods that are used within the function, as well as how the function traverses down the flow chart created by the *flow_view* function.
+The `flow_data()` function shows the edge and node data that's generated by `flow_view()`. In other words, it shows the types of methods that are used within the function, as well as how the function traverses down the flow chart created by the `flow_view()` function.
 ```{r}
 flow_data(test_function)
 ```
+
+----
 
 ## Similar Packages
 
@@ -167,8 +171,24 @@ pander::pander(mytable, keep.line.breaks = TRUE, style = 'grid', justify = 'left
 ### Disadvantages
 - Can't modify the aesthetics like you can in ggplot (colors, shapes, sizing, etc.)
 - Gets complicated with some of the built in R functions since there's a lot of coding behind it (i.e. lm function)
+
 ```{r}
-flow_view(mean)
 flow_view(lm)
 ```
 
+```{r}
+flow_view(mean)
+```
+----
+
+## References
+
+Fabri Antoine, *flow* from <https://github.com/moodymudskipper/flow>
+
+Gordon Max, *Building a flowchart* from <https://cran.r-project.org/web/packages/Gmisc/vignettes/Grid-based_flowcharts.html#grid-some-background-info>
+
+Iannone Richard, *DiagrammeR* from <https://github.com/rich-iannone/DiagrammeR>
+
+Peng Roger D. , Kross Sean, and Anderson Brooke, *Mastering Software Development in R*, from <https://bookdown.org/rdpeng/RProgDA/>
+
+Soetaert Karline, *R Package diagram: visualising simple graphs, flowcharts, and webs* from <https://cran.r-project.org/web/packages/diagram/vignettes/diagram.pdf>
